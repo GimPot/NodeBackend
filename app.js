@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const userRoutes = require("./src/api/routes/users.routes");
+
 //MongoDB connection PATH
 mongoose.connect(process.env.MONGODB_URI, {
 	useNewUrlParser: true
@@ -26,5 +28,7 @@ res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Ty
 res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
 next();
 });
+
+app.use("/users/", userRoutes);
 
 module.exports = app;
